@@ -1,0 +1,58 @@
+Adding people to the household
+
+/api/addPerson
+POST
+
+{
+	"name" : "string"
+}
+
+response:
+
+ {
+ 	"id" : 12345
+ }
+
+------------------------------------------
+
+Seeing people in the household
+
+/api/seeRoommates
+GET
+
+{
+	"roommtes" : [{
+		"id": 1234,
+		"name" : "Emy",
+	},
+	...
+	]
+}
+
+----------------------------------------
+
+Add expense
+
+/api/addExpense
+
+PUT
+
+{
+	"expenseName" : "Internet",
+	"amount" : 24.00,
+	"paidBy" : 1235, //id
+	"dividedBy" : [23, 89, 1] // list of ids
+}
+
+
+response
+
+{[
+	"person" : {
+		"id":345,
+		"name": "",
+		"expenseCut": 23.00
+	},
+	...
+  ]
+}
