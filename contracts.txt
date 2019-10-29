@@ -1,27 +1,21 @@
-Adding people to the household
-
-/api/addPerson
+Adding people to the application
+/api/person
 POST
-
 {
 	"name" : "string"
 }
-
 response:
-
  {
  	"id" : 12345
  }
 
 ------------------------------------------
 
-Seeing people in the household
-
-/api/seeRoommates
+Get all people registered in application
+/api/people
 GET
-
 {
-	"roommtes" : [{
+	"people" : [{
 		"id": 1234,
 		"name" : "Emy",
 	},
@@ -33,26 +27,59 @@ GET
 
 Add expense
 
-/api/addExpense
-
-PUT
-
+/api/expense
+POST
 {
 	"expenseName" : "Internet",
 	"amount" : 24.00,
-	"paidBy" : 1235, //id
-	"dividedBy" : [23, 89, 1] // list of ids
+	"people" : [23, 89, 1] // list of people ids
 }
 
-
 response
-
-{[
-	"person" : {
-		"id":345,
-		"name": "",
-		"expenseCut": 23.00
+{
+    "expenseName": "Internet"
+    "amount": 24.00
+    "people": [{
+		"id": 345,
+		"name": "Emy",
 	},
 	...
   ]
+}
+
+
+--------------------------------------------
+
+Get all expenses
+/api/expenses
+GET
+
+
+response
+{[
+  {
+    "expenseName": "Internet",
+    "people": [
+      {
+        "id": 123,
+        "name": "Rosbel"
+      }, {...}
+    ],
+    "amount": 40.00
+  }
+]}
+
+
+
+
+----------------------------------
+Person = {
+    id: 'integer',
+    name: 'string'
+}
+Expense = {
+    id: 'integer'
+    expenseName: 'string',
+    amount: 'double',
+    people: 'array<Person>'
 }
