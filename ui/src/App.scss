@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-header {
@@ -17,6 +17,3 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
-}
