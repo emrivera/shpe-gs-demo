@@ -1,0 +1,16 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Buttons {
+    display: flex;
+    padding-top: 16px;
+    justify-content: flex-end;
+  }
+}
