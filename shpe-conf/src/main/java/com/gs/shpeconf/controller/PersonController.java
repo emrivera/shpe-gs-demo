@@ -1,28 +1,21 @@
 package com.gs.shpeconf.controller;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gs.shpeconf.controller.model.Person;
+import com.gs.shpeconf.model.Person;
 
 @RestController
 public class PersonController
 {
     @RequestMapping("/api/people")
-    public Map <String, List<Person>> getPeople()
+    public Map <String, List<Person>> getPeople() throws FileNotFoundException
     {
-        List<Person> people = new ArrayList<Person>();
-
-        //todo: emy-> setup to read from a file
-        people.add(new Person("emy"));
-        people.add(new Person("rosbel"));
-        people.add(new Person("eddy"));
-
-        return buildGetPeopleResponse(people);
+        return buildGetPeopleResponse(Person.fetchAllPersons());
     }
 
     private Map<String, List<Person>> buildGetPeopleResponse(List<Person> people) {
