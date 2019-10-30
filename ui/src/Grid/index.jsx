@@ -12,43 +12,30 @@ import './index.scss';
    "total": 123
  }
  */
-function Grid() {
-  const grid = {
-    columnDefs: [{
-      headerName: "Expense",
-      field: "expense"
-    }, {
-      headerName: "People",
-      // https://www.ag-grid.com/javascript-grid-value-getters/
-      valueGetter: (params) => params.data.people.join(', ')
-    }, {
-      headerName: "Total",
-      field: "total"
-    }, {
-      headerName: "Total per Person",
-      valueGetter: (params) => params.data.total / params.data.people.length
-    }]
-    ,
-    rowData: [{
-      expense: 'Netflix',
-      people: ['Rosbel', 'Emy', 'Eddy'],
-      total: 12
-    },
-      {
-        expense: 'Cable',
-        people: ['Rosbel', 'Emy'],
-        total: 100
-      }
-    ]
-  };
 
+const columnDefs = [{
+  headerName: "Expense",
+  field: "expense"
+}, {
+  headerName: "People",
+  // https://www.ag-grid.com/javascript-grid-value-getters/
+  valueGetter: (params) => params.data.people.join(', ')
+}, {
+  headerName: "Total",
+  field: "total"
+}, {
+  headerName: "Total per Person",
+  valueGetter: (params) => params.data.total / params.data.people.length
+}];
+
+function Grid({ data }) {
   return (
     <div
       className="ag-theme-balham Grid"
     >
       <AgGridReact
-        columnDefs={grid.columnDefs}
-        rowData={grid.rowData}>
+        columnDefs={columnDefs}
+        rowData={data}>
       </AgGridReact>
     </div>
   )
