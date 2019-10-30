@@ -4,7 +4,7 @@ import './index.scss';
 import Button from '@material-ui/core/Button';
 import Form from '../Form';
 
-export default function Header() {
+export default function Header({ onAdd }) {
   const [showForm, setShowForm] = useState(false);
   const handleAddExpense = () => {
     setShowForm(!showForm);
@@ -22,11 +22,12 @@ export default function Header() {
         show={showForm}
         onComplete={(payload) => {
           console.log('Submitted: ', payload);
-          setShowForm(false)
+          onAdd(payload);
+          setShowForm(false);
         }}
         onCancel={() => {
           console.log('Canceled');
-          setShowForm(false)
+          setShowForm(false);
         }}
       />
     </div>
