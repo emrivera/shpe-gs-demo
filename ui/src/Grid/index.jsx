@@ -4,14 +4,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import './index.scss';
-// Expected Payload:
-/*
- {
-   "expenseName": "Name of expense",
-   "people": [ "string", "string" ]
-   "total": 123
- }
- */
 
 const gridOptions = {
   defaultColDef: {
@@ -33,6 +25,15 @@ const columnDefs = [{
   headerName: "Amount per Person",
   valueGetter: (params) => params.data.amount / params.data.people.length
 }];
+
+// Expected Payload:
+/*
+ {
+   "expenseName": "Name of expense",
+   "people": [ { "id", "name" } ]
+   "amount": 123
+ }
+ */
 
 function Grid({ data }) {
   return (
