@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ExpenseForm from '../ExpenseForm';
-import PersonForm from '../PersonForm';
+import ExpenseForm from './ExpenseForm';
+import PersonForm from './PersonForm';
 
 import './index.scss';
 
