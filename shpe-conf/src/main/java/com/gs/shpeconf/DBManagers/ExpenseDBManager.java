@@ -8,13 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ExpenseDBManager {
+public class ExpenseDBManager extends SharedDBManager {
 
     private static final String fileName = "src/main/java/com/gs/shpeconf/DBManagers/expenseDB.txt";
 
     public static List<Expense> getAllExpenses () throws FileNotFoundException {
         List<Expense> expenses = new LinkedList<>();
-        Scanner scanner = generateNewScanner();
+        Scanner scanner = generateNewScanner(fileName);
 
         while(scanner.hasNextLine()) {
             List<Person> p = new LinkedList<>();
@@ -45,22 +45,8 @@ public class ExpenseDBManager {
     }
 
     public static void insertExpense(String row) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName, true);
-        PrintWriter writer = new PrintWriter(fileWriter);
-        writer.println();
-        writer.print(row);
-        writer.close();
+        SharedDBManager.insertRow(row, fileName);
     }
 
-    private static Scanner generateNewScanner() throws FileNotFoundException{
-        Scanner scanner;
-        try {
-            scanner = new Scanner(new File(fileName));
-            return scanner;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        throw new FileNotFoundException();
-    }
 
 }

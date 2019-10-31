@@ -1,5 +1,7 @@
 1e rent 1567.89 7 8 9
 2e water  67 7 8
 3e internet  56 9
-8366e Internet 24.0  23 89 1
-2165e Internet 24.0  23 89 1
+9717e Internet 24.0  5 7 8
+2543e Internet 24.0  5 7 8
+6490e Internet 24.0  5 7 8
+1236e Internet 24.0  5 7 8
