@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ExpenseDBManager extends SharedDBManager {
 
-    private static final String fileName = "shpe-conf/src/main/java/com/gs/shpeconf/DBManagers/expenseDB.txt";
+    private static final String fileName = "src/main/java/com/gs/shpeconf/DBManagers/expenseDB.txt";
 
     public static List<Expense> getAllExpenses () throws FileNotFoundException {
         List<Expense> expenses = new LinkedList<>();
