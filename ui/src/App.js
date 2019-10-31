@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
-import Forms from './Header';
+import Forms from './Forms';
 import Grid from './Grid';
 import { fetchExpenses } from "./utils/api";
 
@@ -22,6 +22,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="Header">
+        <h2>SHPE Demo - Budgeting Tool</h2>
+      </div>
       <Forms onAddExpense={onAddExpense} />
       <Grid data={data} />
     </div>

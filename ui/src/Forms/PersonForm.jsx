@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField } from "@material-ui/core";
-import SubmitableCard from "../SubmitableCard";
+import SubmitableCard from "../common/SubmitableCard";
 import { postPerson } from "../utils/api";
 
 export default function PersonForm() {

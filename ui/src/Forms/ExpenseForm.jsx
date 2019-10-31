@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
 
-import { Select, TextField } from '@material-ui/core';
-import SubmitableCard from "../SubmitableCard";
+import { TextField } from '@material-ui/core';
+import SubmitableCard from "../common/SubmitableCard";
 import { fetchPeople, postExpense } from "../utils/api";
-import InputLabel from "@material-ui/core/InputLabel";
-import Chip from "@material-ui/core/Chip";
-import Input from "@material-ui/core/Input";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
+import MultiSelect from "../common/MultiSelect";
 
-
-function getStyles(id, array) {
-  return {
-    fontWeight: array.indexOf(id) === -1 ? 'bold' : ''
-  }
-}
 
 export default function ExpenseForm({ onComplete, onCancel }) {
   const [expenseName, setExpenseName] = useState('');
@@ -74,30 +64,18 @@ export default function ExpenseForm({ onComplete, onCancel }) {
       onCancel={handleCancel}
       onShow={handleShow}
     >
+      {/* Text Field for Expense */}
+      {/* Text Field for Amount */}
+      {/* MultiSelect */}
       <TextField required label="Expense" onChange={(e) => setExpenseName(e.target.value)} />
       <TextField required label="Amount" onChange={(e) => setAmount(e.target.value)} />
-      <FormControl>
-        <InputLabel id="multiple-people-select">People</InputLabel>
-        <Select
-          labelId="multiple-people-select"
-          multiple
-          required
-          value={selected}
-          onChange={handleChange}
-          input={<Input id="multiple-people-select-input" />}
-          renderValue={selected => (
-            <div style={{ margin: 2, display: 'flex', flexWrap: 'wrap' }}>
-              {selected.map(value => <Chip key={value.id} label={value.name} style={{ margin: 2 }} />)}
-            </div>
-          )}
-        >
-          {people.map(person => (
-            <MenuItem key={person.id} value={person} style={getStyles(person, people)}>
-              {person.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <MultiSelect
+        title="People"
+        selectedValues={selected}
+        options={people}
+        onChange={handleChange}
+        labelGetter={(person) => person.name}
+      />
     </SubmitableCard>
   )
 }
