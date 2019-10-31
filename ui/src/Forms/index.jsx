@@ -5,18 +5,10 @@ import PersonForm from './PersonForm';
 
 import './index.scss';
 
-export default function Header({ onAddExpense }) {
+export default function Forms() {
   return (
     <div className="Forms">
-      <ExpenseForm
-        onComplete={(payload) => {
-          console.log('Submitted: ', payload);
-          onAddExpense(payload);
-        }}
-        onCancel={() => {
-          console.log('Canceled');
-        }}
-      />
+      <ExpenseForm />
       <PersonForm />
     </div>
   );

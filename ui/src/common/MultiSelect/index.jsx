@@ -13,6 +13,14 @@ function getStyles(id, array) {
   }
 }
 
+/**
+ * @param title - title to display
+ * @param selectedValues - prop to keep track of selected values from parent component
+ * @param options - available options
+ * @param onChange - callback to notify parent with new selectedValues
+ * @param labelGetter - function to transform an object from options/selected values into a display label
+ * @returns MultiSelect component
+ */
 function MultiSelect({ title, selectedValues, options, onChange, labelGetter }) {
   return (
     <FormControl>

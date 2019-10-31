@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-import { TextField } from "@material-ui/core";
-import SubmitableCard from "../common/SubmitableCard";
-import { postPerson } from "../utils/api";
 
 export default function PersonForm() {
   const [personName, setPerson] = useState();
 
-  const handleSubmit = async () => {
-    postPerson({ name: personName.trim() });
+  const handleSubmit = () => {
+    // Post person to server
+    // Server expects
+    // {
+    //   name: 'PersonNameWithNoSpaces'
+    // }
   };
 
   const handleCancel = () => {};
 
-  return (
-    <SubmitableCard
-    title="Person"
-    headerButtonText="Add Person"
-    onSubmit={handleSubmit}
-    onCancel={handleCancel}
-    >
-      <TextField label="Name" onChange={(e) => setPerson(e.target.value)} />
-    </SubmitableCard>
-  )
+  /*
+    Card that renders a button and when pressed renders more elements
+    Text Field for Person name
+  */
+  return null;
 }

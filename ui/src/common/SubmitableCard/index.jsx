@@ -6,6 +6,15 @@ import CardContent from "@material-ui/core/CardContent";
 
 import './index.scss';
 
+/**
+ *
+ * @param headerButtonText - Text to display on the top button before opening
+ * @param onSubmit - callback called when submit button is pressed
+ * @param onCancel - callback called when cancel button is pressed
+ * @param onShow - callback called when card is displaying children components
+ * @param children - children to render
+ * @returns SubmitableCard component
+ */
 function SubmitableCard({ headerButtonText, onSubmit, onCancel, onShow, children }) {
   const [show, setShow] = useState(false);
 

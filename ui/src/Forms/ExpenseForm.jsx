@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 
-import { TextField } from '@material-ui/core';
-import SubmitableCard from "../common/SubmitableCard";
-import { fetchPeople, postExpense } from "../utils/api";
-import MultiSelect from "../common/MultiSelect";
-
-
 export default function ExpenseForm({ onComplete, onCancel }) {
   const [expenseName, setExpenseName] = useState('');
   const [amount, setAmount] = useState();
@@ -13,35 +7,24 @@ export default function ExpenseForm({ onComplete, onCancel }) {
   const [selected, setSelected] = useState([]);
 
   const handleSubmit = () => {
-    const payload = {
-      expenseName: expenseName.trim(),
-      amount,
-      people: selected.map(person => person.id)
-    };
+    // Set up payload, Server expects
+    // {
+    //    expenseName: 'StringWithNoSpaces',
+    //    amount: double
+    //    people: array of ids
+    // }
 
-    postExpense(payload)
-      .then(expense => {
-        onComplete(expense);
-      })
-      .finally(() => {
-        clearState();
-      });
+    // Send payload to server, and call complete to let parent component know an expense was added
+
+    // Clear state so that people are not pre-selected when adding a new expense
   };
 
   const handleShow = () => {
-    fetchPeople()
-      .then(people => {
-        setPeople(people);
-      })
-      .catch(() => {
-        console.error('Error fetching from server');
-        setPeople([]);
-      })
+    // When opening th card, we should fetch for all people to make sure we have the latest
   };
 
   const handleCancel = () => {
-    clearState();
-    onCancel();
+    // What should we do when user selects cancel?
   };
 
   const clearState = () => {
@@ -51,31 +34,13 @@ export default function ExpenseForm({ onComplete, onCancel }) {
     setSelected([]);
   };
 
-  const handleChange = (e) => {
-    console.log('person: ', e.target.value);
-    setSelected(e.target.value);
-  };
+  /*
+   Card that renders a button and when pressed renders more elements
+   Text Field for Expense
+   Text Field for Amount
+   MultiSelect to add people
+ */
 
-  return (
-    <SubmitableCard
-      headerButtonText="Add expense"
-      title="Expense"
-      onSubmit={handleSubmit}
-      onCancel={handleCancel}
-      onShow={handleShow}
-    >
-      {/* Text Field for Expense */}
-      {/* Text Field for Amount */}
-      {/* MultiSelect */}
-      <TextField required label="Expense" onChange={(e) => setExpenseName(e.target.value)} />
-      <TextField required label="Amount" onChange={(e) => setAmount(e.target.value)} />
-      <MultiSelect
-        title="People"
-        selectedValues={selected}
-        options={people}
-        onChange={handleChange}
-        labelGetter={(person) => person.name}
-      />
-    </SubmitableCard>
-  )
+  return null;
+
 }
