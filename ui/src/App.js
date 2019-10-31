@@ -8,7 +8,7 @@ import { fetchExpenses } from "./utils/api";
 function App() {
   const [data, setData] = useState([]);
 
-  const handleAddExpense = () => {
+  const onAddExpense = () => {
     fetchExpenses().then(expenses => {
       setData(expenses);
     });
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <Forms onAddExpense={handleAddExpense} />
+      <Forms onAddExpense={onAddExpense} />
       <Grid data={data} />
     </div>
   );

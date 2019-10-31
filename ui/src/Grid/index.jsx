@@ -35,9 +35,6 @@ const columnDefs = [{
 }];
 
 function Grid({ data }) {
-
-  // fetch Data
-
   return (
     <div
       className="ag-theme-balham Grid"
