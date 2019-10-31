@@ -42,5 +42,4 @@ async function postExpense(payload) {
   return expense;
 }
 
-
 export { postExpense, fetchPeople, fetchExpenses, postPerson };
