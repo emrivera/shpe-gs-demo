@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { TextField } from "@material-ui/core";
 import SubmitableCard from "../SubmitableCard";
+import { postData } from "../utils/api";
 
 export default function PersonForm({ onComplete, onCancel }) {
   const [person, setPerson] = useState();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const payload = {
       person
     };
+    // TODO - POST Person
+    const response = await postData('http://localhost:8081/api/person');
+    console.log({ response });
     onComplete(payload);
   };
 
