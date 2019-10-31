@@ -1,7 +1,13 @@
-.Form {
+.SubmitableCard {
   display: flex;
   flex-direction: column;
   padding: 16px;
+  min-width: 200px;
+  height: 250px;
+
+  .HeaderButton {
+    padding-bottom: 8px;
+  }
 
   .Content {
     display: flex;

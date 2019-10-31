@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import ExpenseForm from '../ExpenseForm';
+import PersonForm from '../PersonForm';
+
 import './index.scss';
 
-import Button from '@material-ui/core/Button';
-import Form from '../Form';
-
-export default function Header({ onAdd }) {
-  const [showForm, setShowForm] = useState(false);
-  const handleAddExpense = () => {
-    setShowForm(!showForm);
-  };
-
+export default function Header({ onAddExpense, onAddPerson }) {
   return (
     <div className="Header">
       <h2>SHPE Demo - Budgeting Tool</h2>
-      <div className="ActionBar">
-        <Button variant="contained" color="primary" onClick={handleAddExpense} disabled={showForm}>
-          Add Expense
-        </Button>
+      <div className="Forms">
+        <ExpenseForm
+          onComplete={(payload) => {
+            console.log('Submitted: ', payload);
+            onAddExpense(payload);
+          }}
+          onCancel={() => {
+            console.log('Canceled');
+          }}
+        />
+        <PersonForm
+          onComplete={(payload) => {
+            console.log('Submitted: ', payload);
+            onAddPerson(payload);
+          }}
+          onCancel={() => {
+            console.log('Canceled');
+          }}
+        />
       </div>
-      <Form
-        show={showForm}
-        onComplete={(payload) => {
-          console.log('Submitted: ', payload);
-          onAdd(payload);
-          setShowForm(false);
-        }}
-        onCancel={() => {
-          console.log('Canceled');
-          setShowForm(false);
-        }}
-      />
     </div>
   )
 }

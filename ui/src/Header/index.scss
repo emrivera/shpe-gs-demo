@@ -1,11 +1,7 @@
 .Header {
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-
-  .ActionBar {
+  .Forms {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-around;
   }
 }

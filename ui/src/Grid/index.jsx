@@ -13,6 +13,12 @@ import './index.scss';
  }
  */
 
+const gridOptions = {
+  defaultColDef: {
+    resizable: true
+  }
+};
+
 const columnDefs = [{
   headerName: "Expense",
   field: "expense"
@@ -29,11 +35,15 @@ const columnDefs = [{
 }];
 
 function Grid({ data }) {
+
+  // fetch Data
+
   return (
     <div
       className="ag-theme-balham Grid"
     >
       <AgGridReact
+        gridOptions={gridOptions}
         columnDefs={columnDefs}
         rowData={data}>
       </AgGridReact>
