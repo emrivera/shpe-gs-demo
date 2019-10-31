@@ -7,7 +7,7 @@ export default function PersonForm() {
   const [personName, setPerson] = useState();
 
   const handleSubmit = async () => {
-    postPerson({ name: personName });
+    postPerson({ name: personName.trim() });
   };
 
   const handleCancel = () => {};

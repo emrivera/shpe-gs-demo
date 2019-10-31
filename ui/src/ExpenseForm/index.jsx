@@ -24,7 +24,7 @@ export default function ExpenseForm({ onComplete, onCancel }) {
 
   const handleSubmit = () => {
     const payload = {
-      expenseName,
+      expenseName: expenseName.trim(),
       amount,
       people: selected.map(person => person.id)
     };
@@ -42,7 +42,11 @@ export default function ExpenseForm({ onComplete, onCancel }) {
     fetchPeople()
       .then(people => {
         setPeople(people);
-      });
+      })
+      .catch(() => {
+        console.error('Error fetching from server');
+        setPeople([]);
+      })
   };
 
   const handleCancel = () => {
