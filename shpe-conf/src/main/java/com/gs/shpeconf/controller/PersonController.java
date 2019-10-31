@@ -21,7 +21,7 @@ public class PersonController
         return buildGetPeopleResponse(Person.fetchAllPersons());
     }
 
-    @PostMapping("/api/people")
+    @PostMapping("/api/person")
     @ResponseStatus(HttpStatus.CREATED)
     public Map<String, Integer> createPerson(@RequestBody CreatePersonRequest request) throws IOException {
         Map<String, Integer> response = new HashMap<>();

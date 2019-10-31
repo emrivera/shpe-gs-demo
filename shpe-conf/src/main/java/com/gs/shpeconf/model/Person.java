@@ -4,6 +4,7 @@ import com.gs.shpeconf.DBManagers.PersonDBManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class Person {
     public static Integer createNewPerson(String name) throws IOException {
         Random r = new Random();
         Integer id = r.ints(0, 9999).findAny().getAsInt();
-
+        // Remove whitespace from Names and convert to PascalCase
         Person newPerson =  new Person(id, name);
         PersonDBManager.insertPerson(buildDBEntry(newPerson));
         return newPerson.id;

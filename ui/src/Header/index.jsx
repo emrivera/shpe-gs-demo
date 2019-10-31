@@ -19,15 +19,7 @@ export default function Header({ onAddExpense, onAddPerson }) {
             console.log('Canceled');
           }}
         />
-        <PersonForm
-          onComplete={(payload) => {
-            console.log('Submitted: ', payload);
-            onAddPerson(payload);
-          }}
-          onCancel={() => {
-            console.log('Canceled');
-          }}
-        />
+        <PersonForm />
       </div>
     </div>
   )

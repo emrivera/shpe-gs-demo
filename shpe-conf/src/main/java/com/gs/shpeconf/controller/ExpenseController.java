@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping
@@ -20,7 +22,13 @@ public class ExpenseController {
     }
 
     @GetMapping("api/expenses")
-    public List<Expense> getExpenses() throws FileNotFoundException {
-        return Expense.fetchExpenses();
+    public Map<String, List<Expense>> getExpenses() throws FileNotFoundException {
+        return buildGetExpensesResponse(Expense.fetchExpenses());
+    }
+
+    private Map<String, List<Expense>> buildGetExpensesResponse(List<Expense> expenses) {
+        Map<String, List<Expense>> response = new HashMap<>();
+        response.put("expenses", expenses);
+        return response;
     }
 }

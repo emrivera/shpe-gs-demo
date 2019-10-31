@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import './index.scss';
 
-function SubmitableCard({ headerButtonText, onSubmit, onCancel, children }) {
+function SubmitableCard({ headerButtonText, onSubmit, onCancel, onShow, children }) {
   const [show, setShow] = useState(false);
 
   const handleSubmit = () => {
@@ -18,6 +18,20 @@ function SubmitableCard({ headerButtonText, onSubmit, onCancel, children }) {
     setShow(false);
     onCancel();
   };
+
+  useEffect(() => {
+    if (show) {
+      // Call onShow callback to let parent component know that the children are now visible
+      onShow(show);
+    }
+    // For the purpose of this presentation,
+    // We are ignoring the eslint warning for not adding 'onShow' to the dependency array
+    // In practice, adding onShow to the dependency array is the correct solution,
+    // If this causes too many calls to onShow due to 'onShow' itself changing from parent re-rendering
+    // Consider wrapping 'onShow' from the parent using 'useCallback'
+    // https://reactjs.org/docs/hooks-reference.html#usecallback
+    // eslint-disable-next-line
+  }, [show]);
 
   const renderCard = () => {
     if (!show) {
@@ -60,14 +74,17 @@ function SubmitableCard({ headerButtonText, onSubmit, onCancel, children }) {
 
 SubmitableCard.propTypes = {
   headerButtonText: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
+  onShow: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
 };
 
 SubmitableCard.defaultProps = {
   headerButtonText: 'Open',
-  onCancel: () => {}
+  onSubmit: () => {},
+  onCancel: () => {},
+  onShow: () => {}
 };
 
 export default SubmitableCard;

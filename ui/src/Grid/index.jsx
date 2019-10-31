@@ -7,7 +7,7 @@ import './index.scss';
 // Expected Payload:
 /*
  {
-   "expense": "Name of expense",
+   "expenseName": "Name of expense",
    "people": [ "string", "string" ]
    "total": 123
  }
@@ -21,17 +21,17 @@ const gridOptions = {
 
 const columnDefs = [{
   headerName: "Expense",
-  field: "expense"
+  field: "expenseName"
 }, {
   headerName: "People",
   // https://www.ag-grid.com/javascript-grid-value-getters/
-  valueGetter: (params) => params.data.people.join(', ')
+  valueGetter: (params) => params.data.people.map(person => person.name).join(', ')
 }, {
-  headerName: "Total",
-  field: "total"
+  headerName: "Total Amount",
+  field: "amount"
 }, {
-  headerName: "Total per Person",
-  valueGetter: (params) => params.data.total / params.data.people.length
+  headerName: "Amount per Person",
+  valueGetter: (params) => params.data.amount / params.data.people.length
 }];
 
 function Grid({ data }) {
