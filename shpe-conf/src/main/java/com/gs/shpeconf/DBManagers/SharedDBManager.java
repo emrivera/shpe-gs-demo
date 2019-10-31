@@ -3,11 +3,11 @@ package com.gs.shpeconf.DBManagers;
 import java.io.*;
 import java.util.Scanner;
 
+
 public class SharedDBManager {
 
-    static void insertRow(String newRow, String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName, true);
-        PrintWriter writer = new PrintWriter(fileWriter);
+    public static void insertRow(String newRow, String fileName) throws IOException {
+        PrintWriter writer = new PrintWriter(new FileWriter(SharedDBManager.class.getClass().getResource(fileName).getPath(), true));
         writer.println();
         writer.print(newRow);
         writer.close();
@@ -16,7 +16,7 @@ public class SharedDBManager {
     static Scanner generateNewScanner(String fileName) throws FileNotFoundException {
         Scanner scanner;
         try {
-            scanner = new Scanner(new File(fileName));
+            scanner = new Scanner(new File(SharedDBManager.class.getClassLoader().getResource(fileName).getFile()));
             return scanner;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

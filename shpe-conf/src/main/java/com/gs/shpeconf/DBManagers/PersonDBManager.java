@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class PersonDBManager extends SharedDBManager{
 
-    private static final String fileName = "src/main/java/com/gs/shpeconf/DBManagers/personDB.txt";
+    private static final String fileName = "personDB.txt";
 
     public static List<Person> getAllPersons () throws FileNotFoundException {
         Scanner scanner = generateNewScanner(fileName);
