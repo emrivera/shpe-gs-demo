@@ -3,13 +3,14 @@ package com.gs.shpeconf.DBManagers;
 import com.gs.shpeconf.model.Expense;
 import com.gs.shpeconf.model.Person;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ExpenseDBManager {
+
+    private static final String fileName = "src/main/java/com/gs/shpeconf/DBManagers/expenseDB.txt";
 
     public static List<Expense> getAllExpenses () throws FileNotFoundException {
         List<Expense> expenses = new LinkedList<>();
@@ -20,8 +21,8 @@ public class ExpenseDBManager {
             List<Integer> pIds = new LinkedList<>();
 
             Expense newExpense =  new Expense();
+            newExpense.setId(scanner.next());
             newExpense.setExpenseName(scanner.next());
-            newExpense.setId(scanner.nextInt());
             newExpense.setAmount(scanner.nextDouble());
 
             while(scanner.hasNextInt()) {
@@ -43,10 +44,18 @@ public class ExpenseDBManager {
         return expenses;
     }
 
+    public static void insertExpense(String row) throws IOException {
+        FileWriter fileWriter = new FileWriter(fileName, true);
+        PrintWriter writer = new PrintWriter(fileWriter);
+        writer.println();
+        writer.print(row);
+        writer.close();
+    }
+
     private static Scanner generateNewScanner() throws FileNotFoundException{
         Scanner scanner;
         try {
-            scanner = new Scanner(new File("src/main/java/com/gs/shpeconf/DBManagers/expenseDB.txt"));
+            scanner = new Scanner(new File(fileName));
             return scanner;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

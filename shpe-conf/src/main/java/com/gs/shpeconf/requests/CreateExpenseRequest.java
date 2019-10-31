@@ -1,12 +1,14 @@
 package com.gs.shpeconf.requests;
 
+import java.util.List;
+
 public class CreateExpenseRequest {
 
     private String expenseName;
     private Double amount;
-    private Integer[] people; //ids of the people
+    private List<Integer> people; //ids of the people
 
-    public CreateExpenseRequest(String expenseName, Double amount, Integer[] people) {
+    public CreateExpenseRequest(String expenseName, Double amount, List<Integer> people) {
         this.expenseName = expenseName;
         this.amount = amount;
         this.people = people;
@@ -20,7 +22,7 @@ public class CreateExpenseRequest {
         return amount;
     }
 
-    public Integer[] getPeople() {
+    public List<Integer> getPeople() {
         return people;
     }
 }

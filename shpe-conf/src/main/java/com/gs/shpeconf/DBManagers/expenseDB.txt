@@ -1,3 +1,5 @@
-rent 1 1567.89 7 8 9
-water 2 67 7 8
-internet 3 56 9 5
+1e rent 1567.89 7 8 9
+2e water  67 7 8
+3e internet  56 9
+8366e Internet 24.0  23 89 1
+2165e Internet 24.0  23 89 1
